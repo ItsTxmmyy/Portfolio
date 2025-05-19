@@ -6,28 +6,29 @@ export default function About() {
     <div className="p-8 text-white font-mono mt-20">
       <h1 className="font-extrabold text-center text-5xl">WELCOME TO MY WEBSITE</h1>
 
-    <div className="flex flex-col items-center justify-center mt-10 px-4">
-      <Image
-        src={imageToAdd}
-        alt="Tommy"
-        className="border-2 border-white mb-4 rounded-md"
-        width={300}
-        height={300}
-      />
-      <div className="max-w-md w-full p-6 bg-gray-100 shadow-lg rounded-lg space-y-4 text-center">
-        <p className="text-xl font-semibold">
-          MAJOR: <span className="text-red-500">Informatics and Computer Science</span>
-        </p>
+      <div className="flex flex-row items-center justify-center mt-10 px-4 space-x-6">
+        <Image
+          src={imageToAdd}
+          alt="Tommy"
+          className="border-2 border-white rounded-md"
+          width={300}
+          height={300}
+        />
+        <div className="max-w-md w-full p-6 bg-transparent shadow-none space-y-4 text-left">
+          <p className="text-xl font-semibold">
+            MAJOR: <span className="text-red-500">Informatics and Computer Science</span>
+          </p>
 
-        <p className="text-lg">
-          I have developed a strong foundation in frontend web development, specializing in creating dynamic and user-friendly interfaces.
-        </p>
+          <p className="text-lg">
+            I have developed a strong foundation in frontend web development, specializing in creating dynamic and user-friendly interfaces.
+          </p>
 
-        <p className="text-lg">
-          As of this May, I will be joining a project called <span className="font-semibold text-red-500">Dear Diary</span> as a <span className="font-semibold">Frontend Developer</span> for the <span className="font-semibold">University of Iowa</span>.
-        </p>
+          <p className="text-lg">
+            As of this May, I will be joining a project called <span className="font-semibold text-red-500">Dear Diary</span> as a <span className="font-semibold">Frontend Developer</span> for the <span className="font-semibold">University of Iowa</span>.
+          </p>
+        </div>
       </div>
-    </div>
+
 
 
       <h1 className="font-extrabold text-center text-5xl mt-[500px]">EXPERIENCE</h1>
