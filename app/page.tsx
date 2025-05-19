@@ -12,7 +12,7 @@ export default function Home() {
       {/* Main Content (Heading) - Now relative to the viewport due to layout */}
       <div className="relative z-10 flex flex-col justify-center items-center h-full">
         <h1 className="text-4xl font-extrabold font-mono text-center text-white bg-transparent">
-          Hi, I'm Tommy
+          Tommy Le
         </h1>
         <h2 className="text-1xl font-bold font-mono text-center text-gray-300 mt-1 bg-transparent">
           Informatics and Computer Science Student
