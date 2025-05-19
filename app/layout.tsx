@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 // Metadata for the page
 export const metadata: Metadata = {
-  title: "Tommy's Portfolio",
-  description: "Tommy's Personal Website",
+  title: "Tommy&apos;s Portfolio",
+  description: "Tommy&apos;s Personal Website",
 };
 
 // RootLayout component
