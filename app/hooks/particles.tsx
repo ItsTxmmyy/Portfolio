@@ -125,8 +125,16 @@ export default function Particles({
     }
   }, [mousePosition]);
 
-  const animate = useCallback(() => {
+  let lastFrameTime = useRef(0);
+  const fps = 30;
+
+  const animate = useCallback((time: number) => {
     requestAnimationFrame(animate);
+
+    const delta = time - lastFrameTime.current;
+    if (delta < 1000 / fps) return;
+    lastFrameTime.current = time;
+
     updateMouse();
     clearContext();
 
