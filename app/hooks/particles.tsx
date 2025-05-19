@@ -40,7 +40,6 @@ export default function Particles({
   const dpr = typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
   const mousePosition = useMousePosition();
 
-  // Adjust quantity dynamically based on screen size
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
   const particleCount = isMobile ? Math.min(quantity, 100) : quantity;
 
@@ -126,7 +125,7 @@ export default function Particles({
     }
   }, [mousePosition]);
 
-  const animate = useCallback((time?: number) => {
+  const animate = useCallback(() => {
     requestAnimationFrame(animate);
     updateMouse();
     clearContext();
@@ -177,7 +176,6 @@ export default function Particles({
     drawParticles();
   }, [resizeCanvas, drawParticles]);
 
-  // Main effect hook
   useEffect(() => {
     if (canvasRef.current) {
       context.current = canvasRef.current.getContext("2d");
