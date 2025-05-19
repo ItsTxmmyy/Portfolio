@@ -125,58 +125,61 @@ export default function Particles({
     }
   }, [mousePosition]);
 
-  let lastFrameTime = useRef(0);
+  const lastFrameTime = useRef(0);
   const fps = 30;
 
-  const animate = useCallback((time: number) => {
-    requestAnimationFrame(animate);
+  const animate = useCallback(
+    (time: number) => {
+      requestAnimationFrame(animate);
 
-    const delta = time - lastFrameTime.current;
-    if (delta < 1000 / fps) return;
-    lastFrameTime.current = time;
+      const delta = time - lastFrameTime.current;
+      if (delta < 1000 / fps) return;
+      lastFrameTime.current = time;
 
-    updateMouse();
-    clearContext();
+      updateMouse();
+      clearContext();
 
-    const { w, h } = canvasSize.current;
+      const { w, h } = canvasSize.current;
 
-    for (let i = circles.current.length - 1; i >= 0; i--) {
-      const circle = circles.current[i];
+      for (let i = circles.current.length - 1; i >= 0; i--) {
+        const circle = circles.current[i];
 
-      const edgeDistances = [
-        circle.x + circle.translateX - circle.size,
-        w - circle.x - circle.translateX - circle.size,
-        circle.y + circle.translateY - circle.size,
-        h - circle.y - circle.translateY - circle.size,
-      ];
+        const edgeDistances = [
+          circle.x + circle.translateX - circle.size,
+          w - circle.x - circle.translateX - circle.size,
+          circle.y + circle.translateY - circle.size,
+          h - circle.y - circle.translateY - circle.size,
+        ];
 
-      const closestEdge = Math.min(...edgeDistances);
-      const remapClosestEdge = remapValue(closestEdge, 0, 20, 0, 1);
+        const closestEdge = Math.min(...edgeDistances);
+        const remapClosestEdge = remapValue(closestEdge, 0, 20, 0, 1);
 
-      circle.alpha = Math.min(circle.targetAlpha, circle.targetAlpha * remapClosestEdge);
+        circle.alpha = Math.min(circle.targetAlpha, circle.targetAlpha * remapClosestEdge);
 
-      circle.x += circle.dx;
-      circle.y += circle.dy;
+        circle.x += circle.dx;
+        circle.y += circle.dy;
 
-      circle.translateX +=
-        (mouse.current.x / (staticity / circle.magnetism) - circle.translateX) / ease;
-      circle.translateY +=
-        (mouse.current.y / (staticity / circle.magnetism) - circle.translateY) / ease;
+        circle.translateX +=
+          (mouse.current.x / (staticity / circle.magnetism) - circle.translateX) / ease;
+        circle.translateY +=
+          (mouse.current.y / (staticity / circle.magnetism) - circle.translateY) / ease;
 
-      const isOutOfBounds =
-        circle.x < -circle.size ||
-        circle.x > w + circle.size ||
-        circle.y < -circle.size ||
-        circle.y > h + circle.size;
+        const isOutOfBounds =
+          circle.x < -circle.size ||
+          circle.x > w + circle.size ||
+          circle.y < -circle.size ||
+          circle.y > h + circle.size;
 
-      if (isOutOfBounds) {
-        circles.current.splice(i, 1);
-        circles.current.push(circleParams());
-      } else {
-        drawCircle(circle, true);
+        if (isOutOfBounds) {
+          circles.current.splice(i, 1);
+          circles.current.push(circleParams());
+        } else {
+          drawCircle(circle, true);
+        }
       }
-    }
-  }, [ease, staticity, clearContext, updateMouse]);
+    },
+    [ease, staticity, clearContext, updateMouse]
+  );
 
   const initCanvas = useCallback(() => {
     resizeCanvas();
